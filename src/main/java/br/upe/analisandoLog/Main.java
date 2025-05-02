@@ -8,7 +8,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         // Monta o caminho absoluto do arquivo acesso.log de forma portável
-        String caminhoAbsoluto = Paths.get("acesso.log").toAbsolutePath().toString();
+        String caminhoAbsoluto = Paths.get("access.log").toAbsolutePath().toString();
 
         TratadorArquivo tratador = new TratadorArquivo(caminhoAbsoluto);
 
