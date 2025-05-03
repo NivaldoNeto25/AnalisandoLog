@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class MediaRequisicoesPostTest {
     @Test
     public void testMediaCalculadaCorretamente() {
-        TratadorArquivo mock = new TratadorArquivo("access.log") {
+        TratadorArquivo mock = new TratadorArquivo("acess.log") {
             @Override
             public ArrayList<String> getMetodos() {
                 ArrayList<String> lista = new ArrayList<>();

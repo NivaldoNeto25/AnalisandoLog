@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class RecursosGrandesRespondidosTest {
     @Test
     public void testRelatorioContemLinhaEsperada() {
-        TratadorArquivo mock = new TratadorArquivo("access.log") {
+        TratadorArquivo mock = new TratadorArquivo("acess.log") {
             @Override
             public ArrayList<String> getCodigos() {
                 ArrayList<String> lista = new ArrayList<>();
