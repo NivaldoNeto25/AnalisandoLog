@@ -39,7 +39,7 @@ public class RecursosGrandesRespondidos {
         }
 
         // Futuro: salvar em arquivo
-        // SalvaArquivoTxt.salvar("análise/recursosGrandes.txt", relatorio);
+        // SalvaArquivoTxt.salvar("analise/recursosGrandes.txt", relatorio);
     }
 }
 
