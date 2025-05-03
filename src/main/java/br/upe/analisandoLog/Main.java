@@ -23,7 +23,7 @@ public class Main {
             System.out.println("0 - Sair");
             System.out.print("Opção: ");
 
-            String opcao = scanner.nextLine();
+            String opcao = scanner.nextLine().trim();
 
             switch (opcao) {
                 case "1":
@@ -39,9 +39,12 @@ public class Main {
                     break;
                 default:
                     System.out.println("Opção inválida.");
+                    break;
             }
         }
 
         scanner.close();
+        System.out.println("Programa encerrado.");
     }
 }
+
