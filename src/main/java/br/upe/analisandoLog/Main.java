@@ -19,6 +19,7 @@ public class Main {
         while (executando) {
             System.out.println("\nEscolha uma opção:");
             System.out.println("1 - Gerar relatório de recursos grandes");
+            System.out.println("4 - Mostrar média de POSTs com sucesso em 2021");
             System.out.println("0 - Sair");
             System.out.print("Opção: ");
 
@@ -28,6 +29,10 @@ public class Main {
                 case "1":
                     RecursosGrandesRespondidos recursos = new RecursosGrandesRespondidos(tratador);
                     recursos.gerarRelatorio();
+                    break;
+                case "4":
+                    MediaRequisicoesPost media = new MediaRequisicoesPost(tratador);
+                    media.exibirMedia();
                     break;
                 case "0":
                     executando = false;

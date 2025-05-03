@@ -88,4 +88,12 @@ public class TratadorArquivo {
     public ArrayList<String> getCodigos(){
         return statusCodes;
     }
+
+    public ArrayList<String> getMetodos() {
+        return metodos;
+    }
+    
+    public ArrayList<String> getDatas() {
+        return datas;
+    }
 }
