@@ -81,6 +81,11 @@ public class TratadorArquivo {
         return ips.size();
     }
 
-    // Você pode adicionar mais getters conforme for necessário.
-}
+    public ArrayList<String> getTamanhos() {
+        return tamanhos;
+    }
 
+    public ArrayList<String> getCodigos(){
+        return statusCodes;
+    }
+}
