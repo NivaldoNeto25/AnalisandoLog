@@ -1,0 +1,6 @@
+Ubuntu 1,3715
+Macintosh 1,9300
+Linux, outros 2,1381
+Fedora 0,0575
+Windows 54,2645
+Mobile 4,9103

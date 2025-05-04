@@ -3,10 +3,10 @@ package br.upe.analisandoLog;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NaoRespondidosNovembro {
+public class NaoRespondidos {
     private TratadorArquivo tratador;
 
-    public NaoRespondidosNovembro(TratadorArquivo tratador) {
+    public NaoRespondidos(TratadorArquivo tratador) {
         this.tratador = tratador;
     }
 

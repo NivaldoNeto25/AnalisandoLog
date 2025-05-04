@@ -3,10 +3,10 @@ package br.upe.analisandoLog;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SistemasOperacionais {
+public class PorcentagemRequisicoesSO {
     private TratadorArquivo tratador;
 
-    public SistemasOperacionais(TratadorArquivo tratador) {
+    public PorcentagemRequisicoesSO(TratadorArquivo tratador) {
         this.tratador = tratador;
     }
 

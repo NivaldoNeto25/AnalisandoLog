@@ -31,10 +31,12 @@ public class Main {
                         recursos.gerarRelatorio();
                         break;
                     case 2:
-                        // Chama a função para a opção 2
+                        NaoRespondidos naoResp = new NaoRespondidos(tratador);
+                        naoResp.gerarRelatorio();
                         break;
                     case 3:
-                        // Chama a função para a opção 3
+                        PorcentagemRequisicoesSO porcentagem = new PorcentagemRequisicoesSO(tratador);
+                        porcentagem.gerarRelatorio();
                         break;
                     case 4:
                         MediaRequisicoesPost media = new MediaRequisicoesPost(tratador);
@@ -51,3 +53,7 @@ public class Main {
                 System.out.println("Entrada inválida. Por favor, insira um número entre 0 e 4.");
             }
         }
+        scanner.close();
+        System.out.println("Fim do programa.");
+    }
+}
