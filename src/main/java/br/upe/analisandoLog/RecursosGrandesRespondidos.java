@@ -32,14 +32,8 @@ public class RecursosGrandesRespondidos {
             }
         }
 
-        // Exibe no terminal
-        for (int i = 0; i < relatorio.size(); i++) {
-        	String linha = relatorio.get(i);
-        	System.out.println(linha);
-        }
+        String conteudoRelatorio = String.join("\n", relatorio);
 
-        // Futuro: salvar em arquivo
-        // SalvaArquivoTxt.salvar("analise/recursosGrandes.txt", relatorio);
+        CriarArquivoTxt.salvar("recursosGrandes.txt", conteudoRelatorio);
     }
 }
-
