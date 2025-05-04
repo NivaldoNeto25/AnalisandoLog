@@ -32,15 +32,20 @@ public class Main {
                 case 3:
                     break;
                 case 4:
+                    MediaRequisicoesPost media = new MediaRequisicoesPost(tratador);
+                    media.exibirMedia();
                     break;
                 case 0:
                     executando = false;
                     break;
                 default:
                     System.out.println("Opção inválida.");
+                    break;
             }
         }
 
         scanner.close();
+        System.out.println("Programa encerrado.");
     }
 }
+
