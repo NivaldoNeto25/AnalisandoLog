@@ -20,6 +20,8 @@ public class TratadorArquivo {
             while ((linha = br.readLine()) != null) {
                 tratarLinha(linha);
             }
+            System.out.println("Arquivo carregado com sucesso!");
+            System.out.println("Número total de linhas: " + getNumeroLinhas());
         } catch (IOException e) {
             System.out.println("Erro ao ler o arquivo: " + e.getMessage());
         }
@@ -37,7 +39,7 @@ public class TratadorArquivo {
             String data = linha.substring(iniData, fimData);
             datas.add(data);
 
-            // Método e recurso
+            // Metodo e recurso
             int iniMetodo = linha.indexOf("\"") + 1;
             int fimMetodo = linha.indexOf("\"", iniMetodo);
             String[] metodoErecurso = linha.substring(iniMetodo, fimMetodo).split(" ");
@@ -61,7 +63,7 @@ public class TratadorArquivo {
             String userAgent = (thirdQuote != -1 && fourthQuote != -1) ? linha.substring(thirdQuote + 1, fourthQuote) : "-";
             userAgents.add(userAgent);
         } catch (Exception e) {
-            // Em caso de erro inesperado, adicione "-" para manter alinhamento
+            // Em caso de erro inesperado, adiciona "-" para manter alinhamento
             ips.add("-");
             datas.add("-");
             metodos.add("-");
