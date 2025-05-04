@@ -98,4 +98,12 @@ public class TratadorArquivo {
     public ArrayList<String> getDatas() {
         return datas;
     }
+
+    public ArrayList<String> getRecursos() {
+        return recursos;
+    }
+
+    public ArrayList<String> getUserAgents(){
+        return userAgents;
+    }
 }
