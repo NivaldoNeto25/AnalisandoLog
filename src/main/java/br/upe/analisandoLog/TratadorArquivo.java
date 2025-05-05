@@ -16,6 +16,9 @@ public class TratadorArquivo {
 
     public TratadorArquivo(String caminhoArquivo) {
         try (BufferedReader br = new BufferedReader(new FileReader(caminhoArquivo))) {
+        
+            br.readLine();
+            
             String linha;
             while ((linha = br.readLine()) != null) {
                 tratarLinha(linha);
