@@ -1,6 +1,6 @@
 package br.upe.analisandoLog;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class PorcentagemRequisicoesSO {
@@ -11,36 +11,47 @@ public class PorcentagemRequisicoesSO {
     }
 
     public void gerarRelatorio() {
-        HashMap<String, Integer> contagemSO = new HashMap<>();
+        // Usa LinkedHashMap para manter a ordem
+        LinkedHashMap<String, Integer> contagemSO = new LinkedHashMap<>();
+        contagemSO.put("Windows", 0);
+        contagemSO.put("Macintosh", 0);
+        contagemSO.put("Ubuntu", 0);
+        contagemSO.put("Fedora", 0);
+        contagemSO.put("Mobile", 0);
+        contagemSO.put("Linux, outros", 0);
+
         int totalRequisicoes = 0;
 
-        // Loop para contar os sistemas operacionais e o total de requisições
+        // Conta os sistemas operacionais e total de requisições
         for (String userAgent : tratador.getUserAgents()) {
             totalRequisicoes++;
+
             if (userAgent.contains("Windows")) {
-                contagemSO.put("Windows", contagemSO.getOrDefault("Windows", 0) + 1);
+                contagemSO.put("Windows", contagemSO.get("Windows") + 1);
             } else if (userAgent.contains("Macintosh")) {
-                contagemSO.put("Macintosh", contagemSO.getOrDefault("Macintosh", 0) + 1);
+                contagemSO.put("Macintosh", contagemSO.get("Macintosh") + 1);
             } else if (userAgent.contains("Ubuntu")) {
-                contagemSO.put("Ubuntu", contagemSO.getOrDefault("Ubuntu", 0) + 1);
+                contagemSO.put("Ubuntu", contagemSO.get("Ubuntu") + 1);
             } else if (userAgent.contains("Fedora")) {
-                contagemSO.put("Fedora", contagemSO.getOrDefault("Fedora", 0) + 1);
+                contagemSO.put("Fedora", contagemSO.get("Fedora") + 1);
             } else if (userAgent.contains("Android") || userAgent.contains("Mobile")) {
-                contagemSO.put("Mobile", contagemSO.getOrDefault("Mobile", 0) + 1);
+                contagemSO.put("Mobile", contagemSO.get("Mobile") + 1);
             } else if (userAgent.contains("X11")) {
-                contagemSO.put("Linux, outros", contagemSO.getOrDefault("Linux, outros", 0) + 1);
+                contagemSO.put("Linux, outros", contagemSO.get("Linux, outros") + 1);
             }
         }
 
-        // Gerar o relatório com o percentual de cada SO
+        // Monta o relatório
         StringBuilder relatorio = new StringBuilder();
         for (Map.Entry<String, Integer> entry : contagemSO.entrySet()) {
-            String so = entry.getKey();
             int count = entry.getValue();
-            double percentual = (count / (double) totalRequisicoes) * 100;
-            relatorio.append(String.format("%s %.4f\n", so, percentual));
+            if (count > 0) {
+                double percentual = (count / (double) totalRequisicoes) * 100;
+                relatorio.append(String.format("%s %.4f\n", entry.getKey(), percentual));
+            }
         }
 
         CriarArquivoTxt.salvar("sistemasOperacionais.txt", relatorio.toString());
     }
 }
+

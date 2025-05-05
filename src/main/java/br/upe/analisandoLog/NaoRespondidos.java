@@ -16,7 +16,6 @@ public class NaoRespondidos {
         ArrayList<String> datas = tratador.getDatas();
 
         List<String> relatorio = new ArrayList<>();
-        relatorio.add("Requisições não respondidas em Novembro de 2021:\n");
 
         for (int i = 0; i < codigos.size(); i++) {
             try {

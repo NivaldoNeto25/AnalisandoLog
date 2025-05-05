@@ -16,7 +16,6 @@ public class RecursosGrandesRespondidos {
         ArrayList<String> ips = tratador.getIps();
 
         List<String> relatorio = new ArrayList<>();
-        relatorio.add("Códigos entre 200-299 com tamanho > 2000:\n");
 
         for (int i = 0; i < codigos.size(); i++) {
             try {
