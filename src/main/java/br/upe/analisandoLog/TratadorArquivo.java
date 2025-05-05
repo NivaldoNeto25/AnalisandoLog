@@ -6,19 +6,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class TratadorArquivo {
-    private ArrayList<String> ips = new ArrayList<>();
-    private ArrayList<String> datas = new ArrayList<>();
-    private ArrayList<String> metodos = new ArrayList<>();
-    private ArrayList<String> recursos = new ArrayList<>();
-    private ArrayList<String> statusCodes = new ArrayList<>();
-    private ArrayList<String> tamanhos = new ArrayList<>();
-    private ArrayList<String> userAgents = new ArrayList<>();
+    private ArrayList<EntradaLog> entradas = new ArrayList<>();
 
     public TratadorArquivo(String caminhoArquivo) {
         try (BufferedReader br = new BufferedReader(new FileReader(caminhoArquivo))) {
-        
-            br.readLine();
-            
+            br.readLine(); // Ignora a primeira linha (header), se houver
+
             String linha;
             while ((linha = br.readLine()) != null) {
                 tratarLinha(linha);
@@ -34,13 +27,11 @@ public class TratadorArquivo {
         try {
             // IP
             String ip = linha.split(" ")[0];
-            ips.add(ip);
 
             // Data
             int iniData = linha.indexOf("[") + 1;
             int fimData = linha.indexOf("]");
             String data = linha.substring(iniData, fimData);
-            datas.add(data);
 
             // Metodo e recurso
             int iniMetodo = linha.indexOf("\"") + 1;
@@ -48,65 +39,34 @@ public class TratadorArquivo {
             String[] metodoErecurso = linha.substring(iniMetodo, fimMetodo).split(" ");
             String metodo = metodoErecurso.length > 0 ? metodoErecurso[0] : "-";
             String recurso = metodoErecurso.length > 1 ? metodoErecurso[1] : "-";
-            metodos.add(metodo);
-            recursos.add(recurso);
 
-            // Status code e tamanho
+            // Código de status e tamanho
             String[] partes = linha.substring(fimMetodo + 2).split(" ");
-            String status = partes.length > 0 ? partes[0] : "-";
+            String statusCode = partes.length > 0 ? partes[0] : "-";
             String tamanho = partes.length > 1 ? partes[1] : "-";
-            statusCodes.add(status);
-            tamanhos.add(tamanho);
 
             // User Agent
             int firstQuote = linha.indexOf("\"", fimMetodo + 1);
             int secondQuote = linha.indexOf("\"", firstQuote + 1);
             int thirdQuote = linha.indexOf("\"", secondQuote + 1);
             int fourthQuote = linha.indexOf("\"", thirdQuote + 1);
-            String userAgent = (thirdQuote != -1 && fourthQuote != -1) ? linha.substring(thirdQuote + 1, fourthQuote) : "-";
-            userAgents.add(userAgent);
+            String userAgent = (thirdQuote != -1 && fourthQuote != -1) ?
+                    linha.substring(thirdQuote + 1, fourthQuote) : "-";
+
+            // Criar objeto EntradaLog e adicionar na lista
+            EntradaLog entrada = new EntradaLog(ip, data, metodo, recurso, statusCode, tamanho, userAgent);
+            entradas.add(entrada);
         } catch (Exception e) {
-            // Em caso de erro inesperado, adiciona "-" para manter alinhamento
-            ips.add("-");
-            datas.add("-");
-            metodos.add("-");
-            recursos.add("-");
-            statusCodes.add("-");
-            tamanhos.add("-");
-            userAgents.add("-");
+            // Em caso de erro inesperado, adiciona uma entrada com valores default
+            entradas.add(new EntradaLog("-", "-", "-", "-", "-", "-", "-"));
         }
     }
 
-    // Getters
-    public ArrayList<String> getIps() {
-        return ips;
+    public ArrayList<EntradaLog> getEntradas() {
+        return entradas;
     }
 
     public int getNumeroLinhas() {
-        return ips.size();
-    }
-
-    public ArrayList<String> getTamanhos() {
-        return tamanhos;
-    }
-
-    public ArrayList<String> getCodigos(){
-        return statusCodes;
-    }
-
-    public ArrayList<String> getMetodos() {
-        return metodos;
-    }
-    
-    public ArrayList<String> getDatas() {
-        return datas;
-    }
-
-    public ArrayList<String> getRecursos() {
-        return recursos;
-    }
-
-    public ArrayList<String> getUserAgents(){
-        return userAgents;
+        return entradas.size();
     }
 }
