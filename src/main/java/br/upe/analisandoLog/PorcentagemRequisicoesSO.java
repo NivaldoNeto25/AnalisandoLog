@@ -3,15 +3,14 @@ package br.upe.analisandoLog;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class PorcentagemRequisicoesSO {
-    private TratadorArquivo tratador;
+public class PorcentagemRequisicoesSO extends RelatorioBase {
 
     public PorcentagemRequisicoesSO(TratadorArquivo tratador) {
-        this.tratador = tratador;
+        super(tratador);
     }
 
+    @Override
     public void gerarRelatorio() {
-        // Usa LinkedHashMap para manter a ordem
         LinkedHashMap<String, Integer> contagemSO = new LinkedHashMap<>();
         contagemSO.put("Windows", 0);
         contagemSO.put("Macintosh", 0);
@@ -22,8 +21,11 @@ public class PorcentagemRequisicoesSO {
 
         int totalRequisicoes = 0;
 
-        // Conta os sistemas operacionais e total de requisições
-        for (String userAgent : tratador.getUserAgents()) {
+        for (EntradaLog entrada : tratador.getEntradas()) {
+            String userAgent = entrada.getUserAgent();
+            if (userAgent == null || userAgent.equals("-")) {
+                continue;
+            }
             totalRequisicoes++;
 
             if (userAgent.contains("Windows")) {
@@ -41,17 +43,15 @@ public class PorcentagemRequisicoesSO {
             }
         }
 
-        // Monta o relatório
         StringBuilder relatorio = new StringBuilder();
         for (Map.Entry<String, Integer> entry : contagemSO.entrySet()) {
             int count = entry.getValue();
-            if (count > 0) {
+            if (count > 0 && totalRequisicoes > 0) {
                 double percentual = (count / (double) totalRequisicoes) * 100;
-                relatorio.append(String.format("%s %.4f\n", entry.getKey(), percentual));
+                relatorio.append(String.format("%s %.4f%n", entry.getKey(), percentual));
             }
         }
 
         CriarArquivoTxt.salvar("sistemasOperacionais.txt", relatorio.toString());
     }
 }
-
