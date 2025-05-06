@@ -1,7 +1,7 @@
-br\upe\analisandoLog\RecursosGrandesRespondidos.class
-br\upe\analisandoLog\MediaRequisicoesPost.class
-br\upe\analisandoLog\CriarArquivoTxt.class
-br\upe\analisandoLog\NaoRespondidos.class
-br\upe\analisandoLog\Main.class
-br\upe\analisandoLog\PorcentagemRequisicoesSO.class
-br\upe\analisandoLog\TratadorArquivo.class
+br/upe/analisandoLog/TratadorArquivo.class
+br/upe/analisandoLog/Main.class
+br/upe/analisandoLog/RecursosGrandesRespondidos.class
+br/upe/analisandoLog/MediaRequisicoesPost.class
+br/upe/analisandoLog/CriarArquivoTxt.class
+br/upe/analisandoLog/NaoRespondidos.class
+br/upe/analisandoLog/PorcentagemRequisicoesSO.class
