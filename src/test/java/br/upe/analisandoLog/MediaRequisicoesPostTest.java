@@ -3,48 +3,24 @@ package br.upe.analisandoLog;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-
-
+import java.util.List;
 
 public class MediaRequisicoesPostTest {
+
     @Test
     public void testMediaCalculadaCorretamente() {
-        TratadorArquivo mock = new TratadorArquivo("test.txt") {
+        TratadorArquivo mock = new TratadorArquivo("teste.txt") {
             @Override
-            public ArrayList<String> getMetodos() {
-                ArrayList<String> lista = new ArrayList<>();
-                lista.add("POST");
-                return lista;
-            }
-
-            @Override
-            public ArrayList<String> getCodigos() {
-                ArrayList<String> lista = new ArrayList<>();
-                lista.add("200");
-                return lista;
-            }
-
-            @Override
-            public ArrayList<String> getDatas() {
-                ArrayList<String> lista = new ArrayList<>();
-                lista.add("12/Dec/2021:10:10:10");
-                return lista;
-            }
-
-            @Override
-            public ArrayList<String> getTamanhos() {
-                ArrayList<String> lista = new ArrayList<>();
-                lista.add("5000");
-                return lista;
-            }
-
-            @Override
-            public int getNumeroLinhas() {
-                return 1;
+            public ArrayList<EntradaLog> getEntradas() {
+                List<EntradaLog> entradas = new ArrayList<>();
+                entradas.add(new EntradaLog("127.0.0.1", "10/Nov/2021", "POST", "/recurso", "200", "6000", "Mozilla"));
+                entradas.add(new EntradaLog("127.0.0.1", "10/Nov/2021", "POST", "/recurso2", "200", "4000", "Mozilla"));
+                return entradas;
             }
         };
 
         MediaRequisicoesPost media = new MediaRequisicoesPost(mock);
-        media.exibirMedia(); // Verificação visual
+        media.exibirMedia();
     }
 }
+
