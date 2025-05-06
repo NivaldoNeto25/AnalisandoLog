@@ -10,26 +10,37 @@ public class MediaRequisicoesPost {
     }
 
     public void exibirMedia() {
-        ArrayList<EntradaLog> entradas = tratador.getEntradas();
+        ArrayList<String> metodos = tratador.getMetodos();
+        ArrayList<String> statusCodes = tratador.getCodigos();
+        ArrayList<String> datas = tratador.getDatas();
+        ArrayList<String> tamanhos = tratador.getTamanhos();
+
+        int linhasValidas = Math.min(
+                Math.min(metodos.size(), statusCodes.size()),
+                Math.min(datas.size(), tamanhos.size())
+        );
 
         double soma = 0;
         int contagem = 0;
 
-        for (EntradaLog entrada : entradas) {
-            String metodo = entrada.getMetodo();
-            String statusStr = entrada.getStatusCode();
-            String data = entrada.getData();
-            String tamanhoStr = entrada.getTamanho();
+        for (int i = 0; i < linhasValidas; i++) {
+            String metodo = metodos.get(i);
+            String statusStr = statusCodes.get(i);
+            String data = datas.get(i);
+            String tamanhoStr = tamanhos.get(i);
 
-            if (metodo.equals("POST") && statusStr.matches("\\d{3}")) {
+            if (metodo.equals("POST") &&
+                    statusStr.matches("\\d{3}")) {
                 try {
                     int status = Integer.parseInt(statusStr);
-                    if (status >= 200 && status <= 299 && data.contains("/2021:") && !tamanhoStr.equals("-")) {
+                    if (status >= 200 && status <= 299 &&
+                            data.contains("/2021:") &&
+                            !tamanhoStr.equals("-")) {
+
                         soma += Integer.parseInt(tamanhoStr);
                         contagem++;
                     }
-                } catch (NumberFormatException ignored) {
-                }
+                } catch (NumberFormatException ignored) {}
             }
         }
 

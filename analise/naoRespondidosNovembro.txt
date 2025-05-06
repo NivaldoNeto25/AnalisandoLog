@@ -1068,7 +1068,6 @@
 404 "/index.php?option=com_easyblog&view=dashboard&layout=write" Nov/2021
 404 "/favicon.ico" Nov/2021
 404 "/index.php?option=com_phocagallery'[0]&view=category&id=1&Itemid=53&" Nov/2021
-404 "/index.php?option=\"><script%20>alert(String.fromCharCode(88,83,83))</script>&view=category&id=1&Itemid=53&" Nov/2021
 404 "/index.php?option=/etc/passwd&view=category&id=1&Itemid=53&" Nov/2021
 404 "/index.php?option=http%3a%2f%2fwww.google.com&view=category&id=1&Itemid=53&" Nov/2021
 404 "/_profiler/phpinfo" Nov/2021

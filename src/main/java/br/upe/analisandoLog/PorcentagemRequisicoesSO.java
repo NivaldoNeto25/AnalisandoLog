@@ -3,13 +3,13 @@ package br.upe.analisandoLog;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class PorcentagemRequisicoesSO extends RelatorioBase {
+public class PorcentagemRequisicoesSO {
+    private TratadorArquivo tratador;
 
     public PorcentagemRequisicoesSO(TratadorArquivo tratador) {
-        super(tratador);
+        this.tratador = tratador;
     }
 
-    @Override
     public void gerarRelatorio() {
         LinkedHashMap<String, Integer> contagemSO = new LinkedHashMap<>();
         contagemSO.put("Windows", 0);
@@ -21,8 +21,7 @@ public class PorcentagemRequisicoesSO extends RelatorioBase {
 
         int totalRequisicoes = 0;
 
-        for (EntradaLog entrada : tratador.getEntradas()) {
-            String userAgent = entrada.getUserAgent();
+        for (String userAgent : tratador.getUserAgents()) {
             if (userAgent == null || userAgent.equals("-")) {
                 continue;
             }

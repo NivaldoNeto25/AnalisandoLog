@@ -1,6 +1,6 @@
-Windows 54,2951
-Macintosh 1,9300
-Ubuntu 1,3715
-Fedora 0,0575
-Mobile 4,9103
-Linux, outros 2,1381
+Windows 54,3948
+Macintosh 1,9346
+Ubuntu 1,3748
+Fedora 0,0576
+Mobile 4,9221
+Linux, outros 2,1432
