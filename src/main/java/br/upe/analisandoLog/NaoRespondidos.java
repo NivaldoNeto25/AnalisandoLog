@@ -3,28 +3,24 @@ package br.upe.analisandoLog;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NaoRespondidos {
-    private TratadorArquivo tratador;
+public class NaoRespondidos extends RelatorioBase {
 
     public NaoRespondidos(TratadorArquivo tratador) {
-        this.tratador = tratador;
+        super(tratador);
     }
 
+    @Override
     public void gerarRelatorio() {
-        ArrayList<String> codigos = tratador.getCodigos();
-        ArrayList<String> recursos = tratador.getRecursos();
-        ArrayList<String> datas = tratador.getDatas();
-
+        ArrayList<EntradaLog> entradas = tratador.getEntradas();
         List<String> relatorio = new ArrayList<>();
 
-        for (int i = 0; i < codigos.size(); i++) {
+        for (EntradaLog entrada : entradas) {
             try {
-                int codigo = Integer.parseInt(codigos.get(i));
-                String data = datas.get(i);
+                int codigo = Integer.parseInt(entrada.getStatusCode());
+                String data = entrada.getData();
 
-                // Verifica código de erro 4xx e se a data é de novembro de 2021
                 if (codigo >= 400 && codigo <= 499 && data.contains("Nov/2021")) {
-                    String linha = codigo + " " + "\"" + recursos.get(i) + "\" Nov/2021";
+                    String linha = codigo + " \"" + entrada.getRecurso() + "\" Nov/2021";
                     relatorio.add(linha);
                 }
             } catch (NumberFormatException e) {

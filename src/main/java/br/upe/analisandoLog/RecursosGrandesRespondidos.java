@@ -3,27 +3,24 @@ package br.upe.analisandoLog;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RecursosGrandesRespondidos {
-    private TratadorArquivo tratador;
+public class RecursosGrandesRespondidos extends RelatorioBase {
 
     public RecursosGrandesRespondidos(TratadorArquivo tratador) {
-        this.tratador = tratador;
+        super(tratador);
     }
 
+    @Override
     public void gerarRelatorio() {
-        ArrayList<String> codigos = tratador.getCodigos();
-        ArrayList<String> tamanhos = tratador.getTamanhos();
-        ArrayList<String> ips = tratador.getIps();
-
+        ArrayList<EntradaLog> entradas = tratador.getEntradas();
         List<String> relatorio = new ArrayList<>();
 
-        for (int i = 0; i < codigos.size(); i++) {
+        for (EntradaLog entrada : entradas) {
             try {
-                int codigo = Integer.parseInt(codigos.get(i));
-                int tamanho = Integer.parseInt(tamanhos.get(i));
-                
+                int codigo = Integer.parseInt(entrada.getStatusCode());
+                int tamanho = Integer.parseInt(entrada.getTamanho());
+
                 if (codigo >= 200 && codigo <= 299 && tamanho > 2000) {
-                    String linha = codigo + " " + tamanho + " " + ips.get(i);
+                    String linha = codigo + " " + tamanho + " " + entrada.getIp();
                     relatorio.add(linha);
                 }
             } catch (NumberFormatException e) {
@@ -32,7 +29,6 @@ public class RecursosGrandesRespondidos {
         }
 
         String conteudoRelatorio = String.join("\n", relatorio);
-
         CriarArquivoTxt.salvar("recursosGrandes.txt", conteudoRelatorio);
     }
 }
