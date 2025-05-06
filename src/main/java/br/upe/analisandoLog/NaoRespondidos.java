@@ -24,7 +24,7 @@ public class NaoRespondidos {
 
                 // Verifica código de erro 4xx e se a data é de novembro de 2021
                 if (codigo >= 400 && codigo <= 499 && data.contains("Nov/2021")) {
-                    String linha = codigo + " \"" + recursos.get(i) + "\" Nov/2021";
+                    String linha = codigo + " " + "\"" + recursos.get(i) + "\" Nov/2021";
                     relatorio.add(linha);
                 }
             } catch (NumberFormatException e) {
