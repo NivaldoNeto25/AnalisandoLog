@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class PorcentagemRequisicoesSOTest {
     @Test
     public void testRelatorioSistemasOperacionais() {
-        TratadorArquivo mock = new TratadorArquivo("") {
+        TratadorArquivo mock = new TratadorArquivo("test.txt") {
             @Override
             public ArrayList<String> getUserAgents() {
                 ArrayList<String> agents = new ArrayList<>();

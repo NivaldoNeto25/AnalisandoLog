@@ -1,0 +1,2 @@
+Cabeçalho a ser ignorado
+192.168.0.1 - - [12/Dec/2021:10:10:10 +0000] "POST /api/data HTTP/1.1" 200 1234 "-" "TestAgent/1.0"

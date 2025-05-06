@@ -1,4 +1,4 @@
-Windows 54,2646
+Windows 54,2951
 Macintosh 1,9300
 Ubuntu 1,3715
 Fedora 0,0575

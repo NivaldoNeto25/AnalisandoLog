@@ -31,51 +31,38 @@ public class TratadorArquivo {
     }
 
     private void tratarLinha(String linha) {
-        try {
-            // IP
-            String ip = linha.split(" ")[0];
-            ips.add(ip);
-
-            // Data
-            int iniData = linha.indexOf("[") + 1;
-            int fimData = linha.indexOf("]");
-            String data = linha.substring(iniData, fimData);
-            datas.add(data);
-
-            // Metodo e recurso
-            int iniMetodo = linha.indexOf("\"") + 1;
-            int fimMetodo = linha.indexOf("\"", iniMetodo);
-            String[] metodoErecurso = linha.substring(iniMetodo, fimMetodo).split(" ");
-            String metodo = metodoErecurso.length > 0 ? metodoErecurso[0] : "-";
-            String recurso = metodoErecurso.length > 1 ? metodoErecurso[1] : "-";
-            metodos.add(metodo);
-            recursos.add(recurso);
-
-            // Status code e tamanho
-            String[] partes = linha.substring(fimMetodo + 2).split(" ");
-            String status = partes.length > 0 ? partes[0] : "-";
-            String tamanho = partes.length > 1 ? partes[1] : "-";
-            statusCodes.add(status);
-            tamanhos.add(tamanho);
-
-            // User Agent
-            int firstQuote = linha.indexOf("\"", fimMetodo + 1);
-            int secondQuote = linha.indexOf("\"", firstQuote + 1);
-            int thirdQuote = linha.indexOf("\"", secondQuote + 1);
-            int fourthQuote = linha.indexOf("\"", thirdQuote + 1);
-            String userAgent = (thirdQuote != -1 && fourthQuote != -1) ? linha.substring(thirdQuote + 1, fourthQuote) : "-";
-            userAgents.add(userAgent);
+    	String regex = "^(\\S+) - - \\[([^\\]]+)] \"(\\S+) (.*?) (\\S+)\" (\\d{3}) (\\d+|-) \"[^\"]*\" \"([^\"]*)\"";
+    	
+    	try {
+            java.util.regex.Pattern pattern = java.util.regex.Pattern.compile(regex);
+            java.util.regex.Matcher matcher = pattern.matcher(linha);
+            
+            if (matcher.find()) {
+                ips.add(matcher.group(1));
+                datas.add(matcher.group(2));
+                metodos.add(matcher.group(3));
+                recursos.add(matcher.group(4));
+                statusCodes.add(matcher.group(6));
+                tamanhos.add(matcher.group(7));
+                userAgents.add(matcher.group(8));
+            } else {
+            adicionarCamposVazios();
+        }
         } catch (Exception e) {
-            // Em caso de erro inesperado, adiciona "-" para manter alinhamento
-            ips.add("-");
-            datas.add("-");
-            metodos.add("-");
-            recursos.add("-");
-            statusCodes.add("-");
-            tamanhos.add("-");
-            userAgents.add("-");
+            adicionarCamposVazios();
         }
     }
+
+    private void adicionarCamposVazios() {
+        ips.add("-");
+        datas.add("-");
+        metodos.add("-");
+        recursos.add("-");
+        statusCodes.add("-");
+        tamanhos.add("-");
+        userAgents.add("-");
+    }
+
 
     // Getters
     public ArrayList<String> getIps() {

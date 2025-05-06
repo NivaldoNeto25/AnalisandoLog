@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class RecursosGrandesRespondidosTest {
     @Test
     public void testRelatorioContemLinhaEsperada() {
-        TratadorArquivo mock = new TratadorArquivo("acess.log") {
+        TratadorArquivo mock = new TratadorArquivo("test.txt") {
             @Override
             public ArrayList<String> getCodigos() {
                 ArrayList<String> lista = new ArrayList<>();

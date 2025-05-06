@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class MediaRequisicoesPostTest {
     @Test
     public void testMediaCalculadaCorretamente() {
-        TratadorArquivo mock = new TratadorArquivo("acess.log") {
+        TratadorArquivo mock = new TratadorArquivo("test.txt") {
             @Override
             public ArrayList<String> getMetodos() {
                 ArrayList<String> lista = new ArrayList<>();

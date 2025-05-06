@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class NaoRespondidosTest {
     @Test
     public void testRelatorioNaoRespondidosNovembro() {
-        TratadorArquivo mock = new TratadorArquivo("") {
+        TratadorArquivo mock = new TratadorArquivo("test.txt") {
             @Override
             public ArrayList<String> getCodigos() {
                 ArrayList<String> lista = new ArrayList<>();
