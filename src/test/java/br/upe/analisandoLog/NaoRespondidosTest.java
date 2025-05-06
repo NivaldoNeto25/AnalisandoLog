@@ -3,25 +3,40 @@ package br.upe.analisandoLog;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class NaoRespondidosTest {
-
     @Test
-    public void testNaoRespondidos() {
-        TratadorArquivo mock = new TratadorArquivo("teste.txt") {
+    public void testRelatorioNaoRespondidosNovembro() {
+        TratadorArquivo mock = new TratadorArquivo("test.txt") {
             @Override
-            public ArrayList<EntradaLog> getEntradas() {
-                List<EntradaLog> entradas = new ArrayList<>();
-                entradas.add(new EntradaLog("192.168.0.1", "10/Nov/2021", "GET", "/teste", "404", "123", "Chrome"));
-                entradas.add(new EntradaLog("192.168.0.2", "11/Nov/2021", "GET", "/teste2", "500", "456", "Firefox"));
-                entradas.add(new EntradaLog("192.168.0.3", "11/Oct/2021", "GET", "/teste3", "200", "789", "Safari"));
-                return entradas;
+            public ArrayList<String> getCodigos() {
+                ArrayList<String> lista = new ArrayList<>();
+                lista.add("404");
+                lista.add("403");
+                lista.add("500"); // não deve aparecer
+                return lista;
+            }
+
+            @Override
+            public ArrayList<String> getRecursos() {
+                ArrayList<String> lista = new ArrayList<>();
+                lista.add("/not-found.html");
+                lista.add("/forbidden.html");
+                lista.add("/server-error.html");
+                return lista;
+            }
+
+            @Override
+            public ArrayList<String> getDatas() {
+                ArrayList<String> lista = new ArrayList<>();
+                lista.add("12/Nov/2021:14:22:01");
+                lista.add("30/Nov/2021:23:59:59");
+                lista.add("15/Oct/2021:10:00:00"); // não deve aparecer
+                return lista;
             }
         };
 
         NaoRespondidos relatorio = new NaoRespondidos(mock);
-        relatorio.gerarRelatorio();
+        relatorio.gerarRelatorio(); // saída esperada no arquivo e/ou terminal
     }
 }
-

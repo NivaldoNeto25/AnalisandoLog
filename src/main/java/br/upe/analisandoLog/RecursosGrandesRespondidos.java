@@ -21,7 +21,7 @@ public class RecursosGrandesRespondidos {
             try {
                 int codigo = Integer.parseInt(codigos.get(i));
                 int tamanho = Integer.parseInt(tamanhos.get(i));
-
+                
                 if (codigo >= 200 && codigo <= 299 && tamanho > 2000) {
                     String linha = codigo + " " + tamanho + " " + ips.get(i);
                     relatorio.add(linha);
